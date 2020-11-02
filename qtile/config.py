@@ -78,7 +78,7 @@ keys = [
 	),
 	Key(
 			[mod], "Return", 
-			lazy.spawn("mate-terminal")
+			lazy.spawn("urxvt")
 		),
 
 	# Toggle between different layouts as defined below
@@ -124,6 +124,7 @@ colors = [["#292d3e", "#292d3e"], # panel background
 		  ["#668bd7", "#668bd7"], # color for the even widgets
 		  ["#e1acff", "#e1acff"]] # window name
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
@@ -221,7 +222,7 @@ def init_widgets_list():
 					   background = colors[1]
 					   ),
 			  widget.Sep(
-					   linewidth = 730,
+					   linewidth = 840,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
@@ -309,4 +310,5 @@ def autostart():
 	subprocess.call([home])
 
 
-wmname = "LG3D"
+# wmname = "LG3D"
+wmname = "Qtile"
