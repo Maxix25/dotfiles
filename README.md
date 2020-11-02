@@ -32,4 +32,4 @@
 - Change directory into the repo folder using ```cd dotfiles/```
 - Copy the qtile config into the .config folder using ```cp -r qtile/ ~/.config```
 ### Screenshot
-
+![QtileScreenshot](https://github.com/Maxix25/dotfiles/blob/master/screenshots/qtile.jpeg)
