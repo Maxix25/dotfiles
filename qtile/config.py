@@ -3,7 +3,10 @@ import socket
 import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import bar, widget, hook
+from libqtile.layout.xmonad import MonadTall
+from libqtile.layout.floating import Floating
+from libqtile.layout.matrix import Matrix
 from typing import List
 mod = "mod4"
 
@@ -114,7 +117,27 @@ keys = [
 	Key(
 			[mod], "f", 
 			lazy.window.toggle_fullscreen()
-		)]
+		),
+	Key(
+			[mod], "m",
+			lazy.spawn("flameshot gui")
+	),
+	Key(
+		[], "XF86AudioRaiseVolume",
+		lazy.spawn("amixer -c 0 -q set Master 2dB+")
+	),
+	Key(
+		[], "XF86AudioLowerVolume",
+		lazy.spawn("amixer -c 0 -q set Master 2dB-")
+	),
+	Key(
+		[], "XF86AudioMute",
+		lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
+	),
+	
+    # Also allow changing volume the old fashioned way.
+	Key([mod], "equal", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
+	Key([mod], "minus", lazy.spawn("amixer -c 0 -q set Master 2dB-"))]
 
 colors = [["#292d3e", "#292d3e"], # panel background
 		  ["#434758", "#434758"], # background for current screen tab
@@ -127,12 +150,10 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 for i in range(len(group_names)):
 	groups.append(
 		Group(
 			name=group_names[i],
-			layout=group_layouts[i].lower(),
 		))
 
 for i in groups:
@@ -140,9 +161,6 @@ for i in groups:
 
 #CHANGE WORKSPACES
 		Key([mod], i.name, lazy.group[i.name].toscreen()),
-		Key([mod], "Tab", lazy.screen.next_group()),
-		Key(["mod1"], "Tab", lazy.screen.next_group()),
-		Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
 
 # MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
 		#Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
@@ -169,14 +187,15 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 	keys.append(Key([mod], str(i), lazy.group[name].toscreen()))      # Switch to another group
 	keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))    # Send current window to another group
 """
-layout_theme = {"border_width": 2,
+layout_theme = {"border_width": 1,
 				"margin": 6,
 				"border_focus": "e1acff",
 				"border_normal": "1D2330"
 				}
 
 layouts = [
-	layout.MonadTall(**layout_theme),
+	MonadTall(**layout_theme),
+	Matrix(**layout_theme),
 ]
 
 widget_defaults = dict(
@@ -222,7 +241,7 @@ def init_widgets_list():
 					   background = colors[1]
 					   ),
 			  widget.Sep(
-					   linewidth = 840,
+					   linewidth = 820,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
@@ -278,17 +297,17 @@ mouse = [
 def assign_app_group(client):
 	d = {}
 	d["1"] = ["Navigator", "Firefox""navigator", "firefox" ]
-	d["2"] = ["mate-terminal", "Mate-terminal"]
+	d["2"] = ["urxvt"]
 	d["3"] = ["Atom", "Sublime_text", "Code", "Discord","atom", "sublime_text", "code"]
 	d["4"] = ["VirtualBox Manager", "VirtualBox Machine","virtualbox manager", "virtualbox machine"]
-	d["5"] = ["Discord"]
+	d["5"] = ["Discord", "discord"]
 	d["6"] = ["Spotify_client" ]
 	wm_class = client.window.get_wm_class()[0]
 	for i in range(len(d)):
 		if wm_class in list(d.values())[i]:
 			group = list(d.keys())[i]
 			client.togroup(group)
-			if wm_class == "Mate-terminal" or wm_class == "mate-terminal":
+			if wm_class == "urxvt":
 				group = list(d.keys())[i]
 				client.togroup(group)
 				client.group.cmd_toscreen()
@@ -300,15 +319,17 @@ main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating()
+floating_layout = Floating()
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 extentions = []
 @hook.subscribe.startup_once
 def autostart():
-	home = os.path.expanduser('~/.config/qtile/autostart.sh')
-	subprocess.call([home])
-
+	processes = [
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.jpg']
+	]
+	for p in processes:
+		subprocess.Popen(p)
 
 # wmname = "LG3D"
 wmname = "Qtile"
