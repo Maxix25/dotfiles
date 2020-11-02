@@ -29,7 +29,7 @@ font pango:Dejavu Sans 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec mate-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -209,8 +209,8 @@ for_window [class="Gnome-calculator"] floating enable
 for_window [class="Putty"] floating enable
 for_window [class="Hexchat"] floating enable
 for_window [class=".*"] border pixel 1
-exec mate-terminal --class=htop --name=htop -e htop
-exec mate-terminal
+exec urxvt
+exec urxvt -e htop
 exec firefox
 exec_always feh --bg-scale /home/maxi/Pictures/wallpaper.jpg
 # exec_always compton -f --shadow-exclude 'class_g = "Sublime_text"' --focus-exclude 'class_g = "Sublime_text"' --fade-exclude 'class_g = "Sublime_text"'
