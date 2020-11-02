@@ -211,7 +211,6 @@ for_window [class="Hexchat"] floating enable
 for_window [class=".*"] border pixel 1
 exec urxvt
 exec urxvt -e htop
-exec firefox
 exec_always feh --bg-scale /home/maxi/Pictures/wallpaper.jpg
 # exec_always compton -f --shadow-exclude 'class_g = "Sublime_text"' --focus-exclude 'class_g = "Sublime_text"' --fade-exclude 'class_g = "Sublime_text"'
 mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
