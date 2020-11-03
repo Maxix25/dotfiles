@@ -26,7 +26,7 @@
 - ### Plugins (Optional)
   - To install some useful plugins use ```:CocInstall coc-emmet coc-explorer coc-python coc-discord-neovim coc-tsserver```
 ### Screenshot
-![NeovimScreenshot](https://github.com/Maxix25/dotfiles/blob/master/screenshots/neovim.png)
+![NeovimScreenshot](https://github.com/Maxix25/dotfiles/blob/master/screenshots/neovim.jpeg)
 # Qtile Setup
 - Clone the repo using ```git clone https://github.com/Maxix25/dotfiles.git```
 - Change directory into the repo folder using ```cd dotfiles/```
