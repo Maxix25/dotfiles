@@ -1,5 +1,4 @@
 import os
-import socket
 import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
@@ -9,18 +8,6 @@ from libqtile.layout.floating import Floating
 from libqtile.layout.matrix import Matrix
 from typing import List
 mod = "mod4"
-
-@lazy.function
-def window_to_prev_group(qtile):
-	if qtile.currentWindow is not None:
-		i = qtile.groups.index(qtile.currentGroup)
-		qtile.currentWindow.togroup(qtile.groups[i - 1].name)
-
-@lazy.function
-def window_to_next_group(qtile):
-	if qtile.currentWindow is not None:
-		i = qtile.groups.index(qtile.currentGroup)
-		qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
 keys = [
 	# Switch between windows in current stack pane
@@ -59,30 +46,15 @@ keys = [
 		lazy.layout.swap_left()
 	),
 
-	# Switch window focus to other pane(s) of stack
-	Key(
-		[mod], "space",
-		lazy.layout.next()
-	),
-
-	# Swap panes of split stack
-	Key(
-		[mod, "shift"], "space",
-		lazy.layout.rotate()
-	),
 
 	# Toggle between split and unsplit sides of stack.
 	# Split = all windows displayed
 	# Unsplit = 1 window displayed, like Max layout, but still with
 	# multiple stack panes
 	Key(
-		[mod, "shift"], "Return",
-		lazy.layout.toggle_split()
+		[mod], "Return", 
+		lazy.spawn("urxvt")
 	),
-	Key(
-			[mod], "Return", 
-			lazy.spawn("urxvt")
-		),
 
 	# Toggle between different layouts as defined below
 	Key(
@@ -133,12 +105,8 @@ keys = [
 	Key(
 		[], "XF86AudioMute",
 		lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-	),
+	)]
 	
-    # Also allow changing volume the old fashioned way.
-	Key([mod], "equal", lazy.spawn("amixer -c 0 -q set Master 2dB+")),
-	Key([mod], "minus", lazy.spawn("amixer -c 0 -q set Master 2dB-"))]
-
 colors = [["#292d3e", "#292d3e"], # panel background
 		  ["#434758", "#434758"], # background for current screen tab
 		  ["#ffffff", "#ffffff"], # font color for group names
@@ -146,7 +114,6 @@ colors = [["#292d3e", "#292d3e"], # panel background
 		  ["#8d62a9", "#8d62a9"], # border line color for other tab and odd widgets
 		  ["#668bd7", "#668bd7"], # color for the even widgets
 		  ["#e1acff", "#e1acff"]] # window name
-prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
@@ -196,6 +163,7 @@ layout_theme = {"border_width": 1,
 layouts = [
 	MonadTall(**layout_theme),
 	Matrix(**layout_theme),
+	Floating(**layout_theme),
 ]
 
 widget_defaults = dict(
@@ -207,15 +175,10 @@ widget_defaults = dict(
 
 def init_widgets_list():
 	widgets_list = [
-			  widget.Sep(
-					   linewidth = 0,
-					   padding = 6,
-					   foreground = colors[2],
-					   background = colors[0]
-					   ),
-			  widget.GroupBox(
-					   font = "Ubuntu Bold",
-					   fontsize = 14,
+							
+				widget.GroupBox(
+					   font = "Dejavu Comic Sans",
+					   fontsize = 17,
 					   margin_y = 3,
 					   margin_x = 0,
 					   padding_y = 5,
@@ -233,37 +196,34 @@ def init_widgets_list():
 					   foreground = colors[2],
 					   background = colors[0]
 					   ),
-			  widget.Prompt(
-					   prompt = prompt,
-					   font = "Ubuntu Mono 10",
-					   padding = 10,
-					   foreground = colors[3],
-					   background = colors[1]
-					   ),
-			  widget.Sep(
-					   linewidth = 820,
+				
+			
+				widget.Sep(
+					   linewidth = 800,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
 					   ),
-			  widget.CurrentLayoutIcon(
+
+				widget.CurrentLayoutIcon(
 					   custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 					   foreground = colors[0],
 					   background = colors[4],
 					   padding = 0,
 					   scale = 0.7
 					   ),
-			  widget.CurrentLayout(
+				widget.CurrentLayout(
 					   foreground = colors[2],
 					   background = colors[4],
 					   padding = 5
 					   ), 
-			  widget.Clock(
+				widget.Clock(
 					   foreground = colors[2],
 					   background = colors[5],
 					   format = "%A, %B %d  [ %H:%M ]"
 					   ),
-			  widget.Sep(
+				
+				widget.Sep(
 					   linewidth = 0,
 					   padding = 10,
 					   foreground = colors[0],
