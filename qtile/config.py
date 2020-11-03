@@ -53,7 +53,7 @@ keys = [
 	# multiple stack panes
 	Key(
 		[mod], "Return", 
-		lazy.spawn("urxvt")
+		lazy.spawn("st")
 	),
 
 	# Toggle between different layouts as defined below
@@ -117,10 +117,12 @@ colors = [["#292d3e", "#292d3e"], # panel background
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
+# group_labels = ["1: ", "2: ", "3: ", "4: ", "5: ", "6: "]
 for i in range(len(group_names)):
 	groups.append(
 		Group(
 			name=group_names[i],
+			# label = group_labels[i],
 		))
 
 for i in groups:
