@@ -1,0 +1,12 @@
+{
+	"auto_complete": false,
+	"auto_complete_commit_on_tab": true,
+	"color_scheme": "Packages/Theme - One Dark/One Dark.tmTheme",
+	"font_size": 10,
+	"ignored_packages":
+	[
+		"Matlab",
+		"View In Browser"
+	],
+	"theme": "One Dark.sublime-theme"
+}

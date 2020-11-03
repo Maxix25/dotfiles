@@ -1,0 +1,9 @@
+{
+"disable_anaconda_completion": true,
+"auto_formatting": true,
+ "pep8_ignore":
+    [
+        "E501",
+        "W191"
+    ]
+}
