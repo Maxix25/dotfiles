@@ -1,4 +1,7 @@
 [[ $- != *i* ]] && return
+export LS_OPTIONS='--color=auto'
+eval "$(dircolors -b)"
+alias ls='ls $LS_OPTIONS'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
