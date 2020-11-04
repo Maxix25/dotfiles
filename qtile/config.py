@@ -201,7 +201,7 @@ def init_widgets_list():
 				
 			
 				widget.Sep(
-					   linewidth = 800,
+					   linewidth = 760,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
@@ -259,7 +259,7 @@ mouse = [
 def assign_app_group(client):
 	d = {}
 	d["1"] = ["Navigator", "Firefox""navigator", "firefox" ]
-	d["2"] = ["urxvt"]
+	d["2"] = []
 	d["3"] = ["Atom", "Sublime_text", "Code", "Discord","atom", "sublime_text", "code"]
 	d["4"] = ["VirtualBox Manager", "VirtualBox Machine","virtualbox manager", "virtualbox machine"]
 	d["5"] = ["Discord", "discord"]
@@ -269,10 +269,6 @@ def assign_app_group(client):
 		if wm_class in list(d.values())[i]:
 			group = list(d.keys())[i]
 			client.togroup(group)
-			if wm_class == "urxvt":
-				group = list(d.keys())[i]
-				client.togroup(group)
-				client.group.cmd_toscreen()
 
 
 dgroups_key_binder = None
