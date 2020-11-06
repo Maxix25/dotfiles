@@ -261,7 +261,7 @@ def assign_app_group(client):
 	d["1"] = ["Navigator", "Firefox""navigator", "firefox" ]
 	d["2"] = []
 	d["3"] = ["Atom", "Sublime_text", "Code", "Discord","atom", "sublime_text", "code"]
-	d["4"] = ["VirtualBox Manager", "VirtualBox Machine","virtualbox manager", "virtualbox machine"]
+	d["4"] = ["VirtualBox Manager", "Transmission-gtk"]
 	d["5"] = ["Discord", "discord"]
 	d["6"] = ["Spotify_client" ]
 	wm_class = client.window.get_wm_class()[0]
@@ -284,7 +284,7 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.jpg']
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png']
 	]
 	for p in processes:
 		subprocess.Popen(p)
