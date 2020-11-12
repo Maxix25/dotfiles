@@ -2,10 +2,10 @@ import os
 import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import bar, widget, hook
-from libqtile.layout.xmonad import MonadTall
+from libqtile import bar, hook
+from libqtile.widget import GroupBox, Clock, CurrentLayout, CurrentLayoutIcon, Sep
+from libqtile.layout.xmonad import MonadTall, MonadWide
 from libqtile.layout.floating import Floating
-from libqtile.layout.matrix import Matrix
 from typing import List
 mod = "mod4"
 
@@ -117,12 +117,12 @@ colors = [["#292d3e", "#292d3e"], # panel background
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
-# group_labels = ["1: ", "2: ", "3: ", "4: ", "5: ", "6: "]
+group_labels = ["1: ", "2: ", "3: ", "4: ", "5: ", "6: "]
 for i in range(len(group_names)):
 	groups.append(
 		Group(
 			name=group_names[i],
-			# label = group_labels[i],
+			label = group_labels[i],
 		))
 
 for i in groups:
@@ -164,7 +164,6 @@ layout_theme = {"border_width": 1,
 
 layouts = [
 	MonadTall(**layout_theme),
-	Matrix(**layout_theme),
 	Floating(**layout_theme),
 ]
 
@@ -172,13 +171,13 @@ widget_defaults = dict(
 	font='Arial',
 	fontsize=18,
 	padding=3,
-		background = colors[2]
+	background = colors[2]
 )
 
 def init_widgets_list():
 	widgets_list = [
 							
-				widget.GroupBox(
+				GroupBox(
 					   font = "Dejavu Comic Sans",
 					   fontsize = 17,
 					   margin_y = 3,
@@ -200,32 +199,32 @@ def init_widgets_list():
 					   ),
 				
 			
-				widget.Sep(
-					   linewidth = 760,
+				Sep(
+					   linewidth = 550,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
 					   ),
 
-				widget.CurrentLayoutIcon(
+				CurrentLayoutIcon(
 					   custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 					   foreground = colors[0],
 					   background = colors[4],
 					   padding = 0,
 					   scale = 0.7
 					   ),
-				widget.CurrentLayout(
+				CurrentLayout(
 					   foreground = colors[2],
 					   background = colors[4],
 					   padding = 5
 					   ), 
-				widget.Clock(
+				Clock(
 					   foreground = colors[2],
 					   background = colors[5],
 					   format = "%A, %B %d  [ %H:%M ]"
 					   ),
 				
-				widget.Sep(
+				Sep(
 					   linewidth = 0,
 					   padding = 10,
 					   foreground = colors[0],
@@ -258,18 +257,17 @@ mouse = [
 @hook.subscribe.client_new
 def assign_app_group(client):
 	d = {}
-	d["1"] = ["Navigator", "Firefox""navigator", "firefox" ]
-	d["2"] = []
-	d["3"] = ["Atom", "Sublime_text", "Code", "Discord","atom", "sublime_text", "code"]
-	d["4"] = ["VirtualBox Manager", "Transmission-gtk"]
-	d["5"] = ["Discord", "discord"]
+	d["1"] = ["Navigator"]
+	# d["2"] = []
+	d["3"] = ["atom", "sublime_text", "code"]
+	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom"]
+	d["5"] = ["discord"]
 	d["6"] = ["Spotify_client" ]
 	wm_class = client.window.get_wm_class()[0]
 	for i in range(len(d)):
 		if wm_class in list(d.values())[i]:
 			group = list(d.keys())[i]
 			client.togroup(group)
-
 
 dgroups_key_binder = None
 dgroups_app_rules = []
