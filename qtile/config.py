@@ -53,7 +53,7 @@ keys = [
 	# multiple stack panes
 	Key(
 		[mod], "Return", 
-		lazy.spawn("st")
+		lazy.spawn("xterm -fa 'Monospace' -fs 10")
 	),
 
 	# Toggle between different layouts as defined below
@@ -200,7 +200,7 @@ def init_widgets_list():
 				
 			
 				Sep(
-					   linewidth = 550,
+					   linewidth = 590,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
@@ -251,7 +251,6 @@ mouse = [
 		start=lazy.window.get_position()),
 	Drag([mod], "Button3", lazy.window.set_size_floating(),
 		start=lazy.window.get_size()),
-	Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 @hook.subscribe.client_new
