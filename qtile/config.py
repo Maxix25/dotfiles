@@ -53,7 +53,7 @@ keys = [
 	# multiple stack panes
 	Key(
 		[mod], "Return", 
-		lazy.spawn("xterm -fa 'Monospace' -fs 10")
+		lazy.spawn("xterm -fa 'DaddyTimeMono Nerd Font Book' -fs 10")
 	),
 
 	# Toggle between different layouts as defined below
