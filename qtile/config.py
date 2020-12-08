@@ -53,7 +53,7 @@ keys = [
 	# multiple stack panes
 	Key(
 		[mod], "Return", 
-		lazy.spawn("xterm -fa 'DaddyTimeMono Nerd Font Book' -fs 10")
+		lazy.spawn("xterm -fa 'JetBrains Mono Nerd Font' -fs 11")
 	),
 
 	# Toggle between different layouts as defined below
@@ -76,7 +76,7 @@ keys = [
 		),
 	Key(
 			[mod], "d", 
-			lazy.spawn("rofi -show run -font 'Comic Sans 10' -width '30'  -fullscreen")
+			lazy.spawn("rofi -show run -font 'DaddyTimeMono Nerd Font 11' -width '30'  -fullscreen")
 		),
 	Key(
 			[mod], "b", 
@@ -117,7 +117,7 @@ colors = [["#292d3e", "#292d3e"], # panel background
 
 groups = []
 group_names = ["1", "2", "3", "4", "5", "6"]
-group_labels = ["1: ", "2: ", "3: ", "4: ", "5: ", "6: "]
+group_labels = ["", "", "", "", "ﭮ", ""]
 for i in range(len(group_names)):
 	groups.append(
 		Group(
@@ -178,12 +178,12 @@ def init_widgets_list():
 	widgets_list = [
 							
 				GroupBox(
-					   font = "Dejavu Comic Sans",
-					   fontsize = 17,
+					   font = "DaddyTimeMono Nerd Font",
+					   fontsize = 20,
 					   margin_y = 3,
-					   margin_x = 0,
+					   margin_x = 3,
 					   padding_y = 5,
-					   padding_x = 3,
+					   padding_x = 5,
 					   borderwidth = 3,
 					   active = colors[2],
 					   inactive = colors[2],
@@ -200,7 +200,7 @@ def init_widgets_list():
 				
 			
 				Sep(
-					   linewidth = 590,
+					   linewidth = 700,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
@@ -238,7 +238,7 @@ def init_widgets_screen1():
 	return widgets_screen1                       # Slicing removes unwanted widgets on Monitors 1,3
 
 def init_screens():
-	return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=20))]
+	return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=25))]
 if __name__ in ["config", "__main__"]:
 	screens = init_screens()
 	widgets_list = init_widgets_list()
@@ -281,7 +281,7 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png']
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.jpg']
 	]
 	for p in processes:
 		subprocess.Popen(p)
