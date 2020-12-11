@@ -200,7 +200,7 @@ def init_widgets_list():
 				
 			
 				Sep(
-					   linewidth = 700,
+					   linewidth = 770,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
