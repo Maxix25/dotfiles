@@ -1,3 +1,4 @@
+
 export LS_OPTIONS='--color=auto'
 eval "$(dircolors -b)"
 alias ls='ls $LS_OPTIONS'
@@ -16,6 +17,8 @@ alias discord='./home/maxi/Downloads/Discord/Discord'
 alias font='sudo mv *.ttf /usr/share/fonts'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
+alias generic_send_tcp='spike-fuzzer-generic-send_tcp'
+alias pattern_create='/opt/metasploit/.tools/exploit/pattern_create.rb'
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
