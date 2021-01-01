@@ -12,37 +12,37 @@ mod = "mod4"
 keys = [
 	# Switch between windows in current stack pane
 	Key(
-		[mod], "Down",
+		[mod], "j",
 		lazy.layout.down()
 	),
 	Key(
-		[mod], "Up",
+		[mod], "k",
 		lazy.layout.up()
 	),
 	Key(
-		[mod], "Right",
+		[mod], "l",
 		lazy.layout.right()
 	),
 	Key(
-		[mod], "Left",
+		[mod], "h",
 		lazy.layout.left()
 	),
 
 	# Move windows up or down in current stack
 	Key(
-		[mod, "shift"], "Down",
+		[mod, "shift"], "j",
 		lazy.layout.shuffle_down()
 	),
 	Key(
-		[mod, "shift"], "Up",
+		[mod, "shift"], "k",
 		lazy.layout.shuffle_up()
 	),
 	Key(
-		[mod, "shift"], "Right",
+		[mod, "shift"], "l",
 		lazy.layout.swap_right()
 	),
 	Key(
-		[mod, "shift"], "Left",
+		[mod, "shift"], "h",
 		lazy.layout.swap_left()
 	),
 
@@ -94,6 +94,22 @@ keys = [
 			[mod], "m",
 			lazy.spawn("flameshot gui")
 	),
+	Key(
+		["control"], "Up",
+		lazy.spawn("amixer -c 0 -q set Master 2dB+")
+	),
+	Key(
+		["control"], "Down",
+		lazy.spawn("amixer -c 0 -q set Master 2dB-")
+	),
+	Key(
+		[mod], "r",
+		lazy.spawn("pactl load-module module-loopback")
+	),
+	Key(
+		[mod], "t",
+		lazy.spawn("pactl unload-module module-loopback")
+		),
 	Key(
 		[], "XF86AudioRaiseVolume",
 		lazy.spawn("amixer -c 0 -q set Master 2dB+")
@@ -200,7 +216,7 @@ def init_widgets_list():
 				
 			
 				Sep(
-					   linewidth = 770,
+					   linewidth = 720,
 					   padding = 40,
 					   foreground = colors[0],
 					   background = colors[0]
