@@ -39,3 +39,10 @@
 - Copy the qtile config into the .config folder using ```cp -r qtile/ ~/.config```
 ### Screenshot
 ![QtileScreenshot](https://github.com/Maxix25/dotfiles/blob/master/screenshots/qtile.jpeg)
+
+# Qutebrowser Setup
+- Clone the repo using ```git clone https://github.com/Maxix25/dotfiles.git```
+- Change directory into the repo folder using ```cd dotfiles/```
+- Copy the qutebrowser config folder into the ~/.config folder using ```cp -r qutebrowser ~/.config```
+### Screenshot
+![QutebrowserScreenshot](https://github.com/Maxix25/dotfiles/blob/master/screenshots/qutebrowser.jpeg)
