@@ -80,7 +80,7 @@ keys = [
 		),
 	Key(
 			[mod], "b", 
-			lazy.spawn("firefox")
+			lazy.spawn("qutebrowser")
 		),
 	Key(
 			[mod], "c", 
@@ -272,7 +272,7 @@ mouse = [
 @hook.subscribe.client_new
 def assign_app_group(client):
 	d = {}
-	d["1"] = ["Navigator"]
+	d["1"] = ["Navigator", "qutebrowser"]
 	# d["2"] = []
 	d["3"] = ["atom", "sublime_text", "code"]
 	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom"]
@@ -297,10 +297,11 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.jpg']
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png']
 	]
 	for p in processes:
 		subprocess.Popen(p)
+	lazy.spawn("discord")
 
 # wmname = "LG3D"
 wmname = "Qtile"
