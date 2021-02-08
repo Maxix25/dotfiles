@@ -7,8 +7,4 @@
 config_version: 2
 settings:
   content.notifications:
-    https://www.youtube.com: true
-  content.register_protocol_handler:
-    https://mail.google.com?extsrc=mailto&url=%25s: true
-  statusbar.show:
-    global: never
+    https://las.op.gg: false
