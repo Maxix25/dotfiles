@@ -297,11 +297,11 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png']
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png'],
+		["discord"]
 	]
 	for p in processes:
 		subprocess.Popen(p)
-	lazy.spawn("discord")
 
 # wmname = "LG3D"
 wmname = "Qtile"
