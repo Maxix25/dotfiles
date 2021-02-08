@@ -125,6 +125,6 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 config.set("colors.webpage.darkmode.enabled", True)
 config.bind('M', 'hint links spawn mpv {hint-url}')
-c.url.searchengines = {'DEFAULT':'https://duckduckgo.com/?q={}', 'goog':'https://google.com/search?q={}', 'yt':'https://youtube.com/results?search_query={}', 'st':'https://stackoverflow.com/search?q={}'}
+c.url.searchengines = {'DEFAULT':'https://duckduckgo.com/?q={}', 'goog':'https://google.com/search?q={}', 'yt':'https://youtube.com/results?search_query={}', 'st':'https://stackoverflow.com/search?q={}', 'opgg':'https://las.op.gg/summoner/userName={}'}
 c.downloads.location.directory = "/home/maxi/Downloads"
 config.bind('xb', 'config-cycle statusbar.show always never')
