@@ -8,6 +8,7 @@ from libqtile.layout.xmonad import MonadTall, MonadWide
 from libqtile.layout.floating import Floating
 from typing import List
 mod = "mod4"
+terminal = "gnome-terminal"
 
 keys = [
 	# Switch between windows in current stack pane
@@ -53,7 +54,7 @@ keys = [
 	# multiple stack panes
 	Key(
 		[mod], "Return", 
-		lazy.spawn("xterm -fa 'JetBrains Mono Nerd Font' -fs 11")
+		lazy.spawn(terminal)
 	),
 
 	# Toggle between different layouts as defined below
@@ -80,7 +81,7 @@ keys = [
 		),
 	Key(
 			[mod], "b", 
-			lazy.spawn("qutebrowser")
+			lazy.spawn("firefox")
 		),
 	Key(
 			[mod], "c", 
@@ -90,10 +91,6 @@ keys = [
 			[mod], "f", 
 			lazy.window.toggle_fullscreen()
 		),
-	Key(
-			[mod], "m",
-			lazy.spawn("flameshot gui")
-	),
 	Key(
 		["control"], "Up",
 		lazy.spawn("amixer -c 0 -q set Master 2dB+")
@@ -121,7 +118,15 @@ keys = [
 	Key(
 		[], "XF86AudioMute",
 		lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")
-	)]
+	),
+        Key(
+            [mod], "v",
+            lazy.spawn("code")
+        ),
+        Key(
+            [], "Print",
+            lazy.spawn("flameshot gui")
+        )]
 	
 colors = [["#292d3e", "#292d3e"], # panel background
 		  ["#434758", "#434758"], # background for current screen tab
@@ -298,7 +303,9 @@ extentions = []
 def autostart():
 	processes = [
 		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png'],
-		["discord"]
+		["discord"],
+                ["python", "/home/maxi/Documents/keyboard-simulator/main.py"]
+                
 	]
 	for p in processes:
 		subprocess.Popen(p)
