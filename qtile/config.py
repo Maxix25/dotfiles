@@ -280,7 +280,7 @@ def assign_app_group(client):
 	d["1"] = ["Navigator", "qutebrowser"]
 	# d["2"] = []
 	d["3"] = ["atom", "sublime_text", "code"]
-	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom"]
+	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom", "virt-manager"]
 	d["5"] = ["discord"]
 	d["6"] = ["Spotify_client" ]
 	wm_class = client.window.get_wm_class()[0]
