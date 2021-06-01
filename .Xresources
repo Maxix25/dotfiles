@@ -52,7 +52,7 @@ URxvt.scrollBar: false
 URxvt.cursorColor: white
 !! Copy-Paste
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Shift-Control-X: eval:selection_to_clipboard
 
 !! Extensions
 URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,clipboard
