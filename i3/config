@@ -29,7 +29,7 @@ font pango:Dejavu Sans 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xterm -fa 'JetBrains Mono Nerd Font' -fs 11
+bindsym $mod+Return exec gnome-terminal 
 
 # kill focused window
 bindsym $mod+Shift+q kill
