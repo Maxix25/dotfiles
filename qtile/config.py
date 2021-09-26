@@ -280,9 +280,9 @@ def assign_app_group(client):
 	d["1"] = ["Navigator", "qutebrowser"]
 	# d["2"] = []
 	d["3"] = ["atom", "sublime_text", "code"]
-	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom", "virt-manager"]
+	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom", "virt-manager", "simplescreenrecorder"]
 	d["5"] = ["discord"]
-	d["6"] = ["Spotify_client" ]
+	d["6"] = ["spotify", "audacious"]
 	wm_class = client.window.get_wm_class()[0]
 	for i in range(len(d)):
 		if wm_class in list(d.values())[i]:
@@ -302,9 +302,9 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper.png'],
+		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper2.jpg'],
 		["discord"],
-                ["python", "/home/maxi/Documents/keyboard-simulator/main.py"]
+        ["wal", "-R"]
                 
 	]
 	for p in processes:
