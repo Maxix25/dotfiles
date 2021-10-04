@@ -125,7 +125,7 @@ keys = [
         ),
         Key(
             [], "Print",
-            lazy.spawn("flameshot gui")
+            lazy.spawn("spectacle -r")
         )]
 	
 colors = [["#292d3e", "#292d3e"], # panel background
@@ -302,9 +302,10 @@ extentions = []
 @hook.subscribe.startup_once
 def autostart():
 	processes = [
-		['feh', '--bg-scale', '/home/maxi/Pictures/wallpaper2.jpg'],
+		['feh', '--bg-scale', '/home/maxi/Pictures/onedark.webp'],
 		["discord"],
-        ["wal", "-R"]
+        ["wal", "-R"],
+        ["picom"]
                 
 	]
 	for p in processes:
