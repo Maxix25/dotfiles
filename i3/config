@@ -222,9 +222,7 @@ for_window [class="Gnome-calculator"] floating enable
 for_window [class="Putty"] floating enable
 for_window [class="Hexchat"] floating enable
 for_window [class=".*"] border pixel 1
-exec_always feh --bg-scale /home/maxi/Pictures/wallpaper.png
-exec st
-exec st -e htop
+exec_always feh --bg-scale /home/maxi/Pictures/onedark.webp
 # exec_always compton -f --shadow-exclude 'class_g = "Sublime_text"' --focus-exclude 'class_g = "Sublime_text"' --fade-exclude 'class_g = "Sublime_text"'
 mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
 
@@ -245,3 +243,7 @@ gaps inner 6
 gaps outer 6
 smart_borders on
 smart_gaps on
+# Execute at startup
+exec picom
+exec discord
+exec wal -R
