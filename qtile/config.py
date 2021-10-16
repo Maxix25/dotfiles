@@ -9,6 +9,7 @@ from libqtile.layout.floating import Floating
 from typing import List
 mod = "mod4"
 terminal = "gnome-terminal"
+browser = "brave"
 
 keys = [
 	# Switch between windows in current stack pane
@@ -81,7 +82,7 @@ keys = [
 		),
 	Key(
 			[mod], "b", 
-			lazy.spawn("firefox")
+			lazy.spawn(browser)
 		),
 	Key(
 			[mod], "c", 
