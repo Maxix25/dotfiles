@@ -278,7 +278,7 @@ mouse = [
 @hook.subscribe.client_new
 def assign_app_group(client):
 	d = {}
-	d["1"] = ["Navigator", "qutebrowser"]
+	d["1"] = ["Navigator", "qutebrowser", "brave-browser"]
 	# d["2"] = []
 	d["3"] = ["atom", "sublime_text", "code"]
 	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom", "virt-manager", "simplescreenrecorder"]
