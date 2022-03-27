@@ -1,0 +1,55 @@
+# Path to Oh My Fish install.
+set -q XDG_DATA_HOME
+  and set -gx OMF_PATH "$XDG_DATA_HOME/omf"
+  or set -gx OMF_PATH "$HOME/.local/share/omf"
+
+set fish_greeting
+# Load Oh My Fish configuration.
+source $OMF_PATH/init.fish
+# Bash aliases
+alias ls='ls $LS_OPTIONS'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias gs='git status'
+alias gp='git push'
+alias gpp='git pull --ff'
+alias gd='git diff'
+alias gc='git commit -m'
+alias ga='git add'
+alias rm='rm -f'
+alias blackarch='pacman -Sgg | grep blackarch | cut -d " " -f2 | sort -u | grep '
+alias dot='cp -r ~/.config/qtile/ ~/.config/i3/ ~/.Xresources ~/.bashrc ~/.config/nvim ~/.config/qutebrowser/ ~/dotfiles'
+alias font='sudo mv *.ttf /usr/share/fonts'
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
+alias generic_send_tcp='spike-fuzzer-generic-send_tcp'
+alias pattern_create='/opt/metasploit/.tools/exploit/pattern_create.rb'
+alias maxicentos='ssh -l root maxicentos.com'
+alias maxikali='ssh -l root maxikali.com'
+alias qemucreatedisk='qemu-img create -f qcow2 -o preallocation=off'
+alias vim='nvim'
+alias verseletdb="mysql -h bscwdxvrlgpqghiwem5u-mysql.services.clever-cloud.com -P 3306 -u uqy97dkloyexzhhn -p bscwdxvrlgpqghiwem5u"
+alias ..='cd ..'
+alias emacs="emacsclient -c -a 'emacs'"
+alias doom="~/.emacs.d/bin/doom"
+alias macchanger="sudo macchanger -r enp0s25"
+alias monitor="pactl load-module module-loopback latency_msec=1"
+alias monitor-unload="pactl unload-module module-loopback"
+function fish_prompt
+    set_color blue
+    # https://stackoverflow.com/questions/24581793/ps1-prompt-in-fish-friendly-interactive-shell-show-git-branch
+    set -l git_branch (git branch 2>/dev/null | sed -n '/\* /s///p')
+    echo -n (whoami)'@'(hostname)':'
+    set_color $fish_color_cwd
+	echo -n " "
+    echo -n (prompt_pwd)
+    set_color normal
+    echo -n ' ('
+    set_color purple
+    echo -n "$git_branch"
+    set_color normal
+    echo -n ')'
+    echo -n ' $ '
+end
+neofetch
