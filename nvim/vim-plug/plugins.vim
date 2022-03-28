@@ -14,4 +14,5 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     " Colorscheme
     Plug 'joshdick/onedark.vim'
     Plug 'morhetz/gruvbox'
+	Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
