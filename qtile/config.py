@@ -3,13 +3,14 @@ import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import bar, hook
-from libqtile.widget import GroupBox, Clock, CurrentLayout, CurrentLayoutIcon, Sep
-from libqtile.layout.xmonad import MonadTall, MonadWide
+from libqtile.widget import GroupBox, Clock, CurrentLayout, CurrentLayoutIcon, Sep, Systray, Volume
+from libqtile.layout.xmonad import MonadTall
 from libqtile.layout.floating import Floating
 from typing import List
 mod = "mod4"
-terminal = "gnome-terminal"
+terminal = "gnome-terminal -- fish"
 browser = "brave"
+screen = ""
 
 keys = [
 	# Switch between windows in current stack pane
@@ -101,14 +102,6 @@ keys = [
 		lazy.spawn("amixer -c 0 -q set Master 2dB-")
 	),
 	Key(
-		[mod], "r",
-		lazy.spawn("pactl load-module module-loopback")
-	),
-	Key(
-		[mod], "t",
-		lazy.spawn("pactl unload-module module-loopback")
-		),
-	Key(
 		[], "XF86AudioRaiseVolume",
 		lazy.spawn("amixer -c 0 -q set Master 2dB+")
 	),
@@ -126,7 +119,11 @@ keys = [
         ),
         Key(
             [], "Print",
-            lazy.spawn("spectacle -r")
+                lazy.spawn("spectacle -r")
+        ),
+        Key(
+                [mod], "i",
+                lazy.spawn("Thunar")
         )]
 	
 colors = [["#292d3e", "#292d3e"], # panel background
@@ -251,7 +248,16 @@ def init_widgets_list():
 					   padding = 10,
 					   foreground = colors[0],
 					   background = colors[5]
-					   )]
+					   ),
+                                Systray(
+                                        background = colors[5]
+                                ),
+                                Sep(
+                                        linewidth = 720,
+                                        padding = 40,
+                                        foreground = colors[0],
+                                        background = colors[0]
+                                )]
 	return widgets_list
 
 
@@ -260,7 +266,9 @@ def init_widgets_screen1():
 	return widgets_screen1                       # Slicing removes unwanted widgets on Monitors 1,3
 
 def init_screens():
-	return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=25))]
+	global screen
+	screen = [Screen(top=bar.Bar(widgets=init_widgets_screen1(), opacity=1.0, size=25))]
+	return screen
 if __name__ in ["config", "__main__"]:
 	screens = init_screens()
 	widgets_list = init_widgets_list()
@@ -280,7 +288,7 @@ def assign_app_group(client):
 	d = {}
 	d["1"] = ["Navigator", "qutebrowser", "brave-browser"]
 	# d["2"] = []
-	d["3"] = ["atom", "sublime_text", "code"]
+	d["3"] = ["atom", "sublime_text", "code", "emacs"]
 	d["4"] = ["VirtualBox Manager", "Transmission-gtk", "sqlitebrowser", "zoom", "virt-manager", "simplescreenrecorder"]
 	d["5"] = ["discord"]
 	d["6"] = ["spotify", "audacious"]
@@ -306,8 +314,8 @@ def autostart():
 		['feh', '--bg-scale', '/home/maxi/Pictures/onedark.webp'],
 		["discord"],
         ["wal", "-R"],
-        ["picom"]
-                
+        ["picom"],
+        ["imwheel"]
 	]
 	for p in processes:
 		subprocess.Popen(p)
