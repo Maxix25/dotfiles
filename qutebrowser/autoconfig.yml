@@ -6,5 +6,19 @@
 
 config_version: 2
 settings:
-  content.notifications:
-    https://las.op.gg: false
+  completion.open_categories:
+    global:
+    - searchengines
+    - quickmarks
+    - bookmarks
+    - history
+    - filesystem
+  completion.quick:
+    global: true
+  url.searchengines:
+    global:
+      DEFAULT: https://google.com/search?q={}
+      goog: https://google.com/search?q={}
+      opgg: https://las.op.gg/summoner/userName={}
+      st: https://stackoverflow.com/search?q={}
+      yt: https://youtube.com/results?search_query={}
