@@ -1,7 +1,7 @@
 import os
 import subprocess
-from libqtile.config import Key, Screen, Group, Drag, Click
-from libqtile.command import lazy
+from libqtile.config import Key, Screen, Group, Drag
+from libqtile.lazy import lazy
 from libqtile import bar, hook
 from libqtile.widget import GroupBox, Clock, CurrentLayout, CurrentLayoutIcon, Sep, Systray, Volume
 from libqtile.layout.xmonad import MonadTall
