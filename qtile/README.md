@@ -1,83 +1,91 @@
-# Qtile
+# Qtile configuration file
 
-![Qtile](../../.screenshots/qtile.png)
+## Screenshots 🖥️
 
-***Language***
-- [🇪🇸 Español](./README.es.md)
-- 🇺🇸 English
+![Qtile Screenshots](../assets/Remake-1.png)
 
-## Installation (Arch based)
+![Qtile Screenshots](../assets/Remake-2.png)
 
-Install Qtile and dependencies:
+![Qtile Screenshots](../assets/REMAKE-3.png)
 
-```
-sudo pacman -S qtile pacman-contrib
-yay -S nerd-fonts-ubuntu-mono
-pip install psutil
-```
+## What is Qtile?
 
-Clone this repository and copy my configs:
+[Qtile](http://www.qtile.org/) is a window manager written and configured in Python🐍. It is hackable and lightweight, you can install it among other desktop environments and [standalone WM's](https://wiki.archlinux.org/index.php/window_manager).
 
-```bash
-git clone https://github.com/antoniosarosi/dotfiles.git
-cp -r dotfiles/.config/qtile ~/.config
-```
+## Installation 🐧
 
-Test it with **[Xephyr](https://wiki.archlinux.org/index.php/Xephyr)**:
+Install Qtile and other dependencies.
+
+### For Arch Linux
+All software, one command:
 
 ```bash
+yay -S qtile picom rofi nitrogen xorg-server-xephyr
+lxappearance-gtk3 megasync python-psutil brave-browser alacritty
+bat playerctl pulseaudio-ctl dunst alacritty fish starship neovim
+pavucontrol flameshot noto-fonts-emoji noto-fonts-emoji brightnessctl blueman xfce4-power-manager network-manager-applet xfce4-clipman-plugin
+```
+
+Also install Rofi Power menu:
+```
+git clone git@github.com:jluttine/rofi-power-menu.git
+cp rofi-power-menu ~/.local/bin/
+```
+
+The [xephyr](https://wiki.archlinux.org/index.php/Xephyr) package is for testing purposes.
+
+[Nitrogen](https://wiki.archlinux.org/index.php/nitrogen) help us to set a cool wallpaper since Qtile doesn't have a wallpaper manager by default.
+
+### For Debian, Ubuntu
+
+For Debian, Ubuntu and derivates [here](http://docs.qtile.org/en/latest/manual/install/ubuntu.html) is the qtile installation guide.
+
+#### Dependencies
+
+```
+sudo apt install picom rofi xserver-xephyr nitrogen
+```
+
+## Cloning the config files 📁
+
+```
+git clone git@github.com:DaniDiazTech/Qtile-Config.git ~/.config/qtile
+```
+
+## Testing 🧪
+
+If you want to test the config files without crashing your current qtile instance, type the following commands:
+
+```
 Xephyr -br -ac -noreset -screen 1280x720 :1 &
-DISPLAY=:1 qtile
+DISPLAY=:1 qtile "/PATH/TO/TEST-CONFIG"
 ```
 
-If the network widget doesn't work check ```./settings/widgets.py``` and look
-for this line, you should find it inside a list called *primary_widgets*:
+Once you've done all these steps you should have a cool Qtile instance, but most keybindings won't work, because probably you don´t have the software I use, you could install [my software](https://github.com/DaniDiazTech/Qtile-Config/blob/main/software.txt) or re-map the keybindings in [keybindings.py](https://github.com/Daniel1404/Qtile-Config/blob/main/keybindings.py) file.
 
-```python
-# Change interface arg, use ip address to find which one you need
- widget.Net(**base(bg='color3'), interface='wlp2s0'),
-```
+## Startup  🏁
 
-Once that's done, you can login. But keep in mind keybindings will not work
-unless you have the same programs that I use and the same configs. You can
-either change keybindings or install the software I use and my config files,
-check out [this section](https://github.com/antoniosarosi/dotfiles#keybindings)
-for instructions.
+One of the most important functions in the config is the startup function located at the bottom of _config.py_.
 
-## Structure
-
-In ```config.py```, which is the file where most people write all their config,
-I only have an *autostart* function and some other variables like
-*cursor_warp*.
-
-```python
+``` python
 @hook.subscribe.startup_once
-def autostart():
-    subprocess.call([path.join(qtile_path, 'autostart.sh')])
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 ```
 
-If you want to change *autostart* programs, open  ```./autostart.sh```.
+You can manage the autostart applications editing the  _autostart.sh_ file.
 
-```bash
-#!/bin/sh
-
-# systray battery icon
-cbatticon -u 5 &
-# systray volume
-volumeicon &
+``` bash
+#! /bin/bash 
+picom --experimental-backend &
+nitrogen --restore &
 ```
 
-If you want to modify keybindings, open ```./settings/keys.py```. To modify
-workspaces, use ```./settings/groups.py```. Finally, if you want to add more
-layouts, check ```./settings/layouts.py```, the rest of files don't need any
-configuration.
+You can setup your Qtile instance quickly using the `setup.py` file:
 
-## Themes
+```python
+python setup.py
+```
 
-To set a theme, check which ones are available in ```./themes```, and write
-the name of the theme you want in a file named ```./config.json```:
-
-```json
-{
-    "theme": "material-ocean"
-}
+Remember to set a wallpaper with nitrogen so every time you boot into Qtile, your wallpaper will be restored.
