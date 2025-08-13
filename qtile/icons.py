@@ -3,7 +3,7 @@
 
 
 # You can define a letter and its icon here
-group_icons = ["1   ",
+group_icons = ["1  ",
                "2  ",
                "3  ",
                "4  ",

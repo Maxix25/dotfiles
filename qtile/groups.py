@@ -1,4 +1,4 @@
-from libqtile.config import Group
+from libqtile.config import Group, Match
 from icons import group_icons
 
 class CreateGroups:
@@ -9,9 +9,36 @@ class CreateGroups:
         Return the groups of Qtile
         """
         #### First and last
-        groups = [Group(name, layout="max") if name == self.group_names[0]
-                  else Group(name, layout="floating")
-                  if name == self.group_names[-1] else Group(name, layout="monadtall")
-                  for name in self.group_names]
+        groups = [
+            Group(
+                self.group_names[0],
+                layout="max",
+                matches=[Match(wm_class="brave-browser")]
+            ),
+            Group(
+                self.group_names[1],
+                layout="monadtall",
+                matches=[Match(wm_class="Gnome-terminal")]
+            ),
+            Group(
+                self.group_names[2],
+                layout="monadtall",
+                matches=[Match(wm_class="code")]
+            ),
+            Group(
+                self.group_names[3],
+                layout="monadtall",
+            ),
+            Group(
+                self.group_names[4],
+                layout="max",
+                matches=[Match(wm_class="discord")]
+            ),
+            Group(
+                self.group_names[5],
+                layout="max",
+                matches=[Match(wm_class="spotify")]
+            )
+        ]
         return groups
 

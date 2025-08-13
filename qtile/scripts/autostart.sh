@@ -14,12 +14,9 @@ function run {
     fi
 }
 
-run xinput set-prop 9 342 1
-run xinput set-prop 9 297 1
-run xinput set-prop 9 324 1
-run picom -CGb &
 run discord &
 run brave &
-run nitrogen --restore & 
+xrandr --output VGA-0 --off --output VGA-1 --off --output HDMI-0 --mode 1360x768 --pos 1920x180 --rotate normal --output DVI-D-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+run nitrogen --restore &
 run xfce4-clipman
 run xfce4-power-manager
